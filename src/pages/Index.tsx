@@ -283,7 +283,7 @@ const Index = () => {
         <div className="container relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="space-y-6 sm:space-y-8 min-w-0">
             <Badge variant="secondary" className="px-3 py-1 text-sm font-medium rounded-full bg-secondary/20 text-secondary-foreground hover:bg-secondary/30">
-              להצעת מחיר — צרו קשר
+              מערכת תצוגה לבתי כנסת ובתי מדרש
             </Badge>
             <div className="space-y-4">
               <h1 id="hero-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary leading-tight [overflow-wrap:anywhere]">
