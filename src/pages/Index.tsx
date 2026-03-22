@@ -25,6 +25,11 @@ import offlineSetting from "@/assets/offline-setting.png";
 const galleryImages = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
 const offlineGalleryImages = [offline1, offline2, offline3, offlineSetting];
 
+const WHATSAPP_PHONE = "972523517302";
+const WHATSAPP_DEFAULT_MESSAGE =
+  "שלום, הגעתי מהאתר של לוח דוד. אשמח לפרטים על מסך דיגיטלי לבית הכנסת.";
+const whatsAppUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`;
+
 type SlideshowGalleryProps = {
   images: readonly string[];
   ariaLabel: string;
@@ -268,7 +273,7 @@ const Index = () => {
           </div>
           <div className="flex items-center gap-2 sm:gap-4 shrink-0">
             <span className="hidden sm:inline-block text-muted-foreground font-medium">052-3517302</span>
-            <Button className="touch-manipulation" onClick={() => window.open('https://wa.me/972523517302', '_blank')} aria-label="פתיחת שיחה בוואטסאפ">
+            <Button className="touch-manipulation" onClick={() => window.open(whatsAppUrl, '_blank')} aria-label="פתיחת שיחה בוואטסאפ">
               <MessageCircle className="h-4 w-4" aria-hidden="true" />
               וואטסאפ
             </Button>
@@ -280,7 +285,7 @@ const Index = () => {
       <main id="main-content" tabIndex={-1}>
       <section className="relative pt-16 pb-20 sm:pt-20 sm:pb-32 overflow-hidden" aria-labelledby="hero-heading">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5 -z-10" />
-        <div className="container relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="container relative z-10 max-w-6xl">
           <div className="space-y-6 sm:space-y-8 min-w-0">
             <Badge variant="secondary" className="px-3 py-1 text-sm font-medium rounded-full bg-secondary/20 text-secondary-foreground hover:bg-secondary/30">
               מערכת תצוגה לבתי כנסת ובתי מדרש
@@ -292,13 +297,16 @@ const Index = () => {
               <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed [overflow-wrap:anywhere]">
                 תוכנה למסך חכם: זמני תפילה ושיעורי תורה, הודעות לקהל, לוח נפטרים ואזכרות — תצוגה מכובדת, ברורה ונוחה לעדכון. אפשרות ייעודית גם לבתי כנסת בלי אינטרנט יציב.
               </p>
-              <div className="flex items-center gap-2 text-sm font-medium text-primary/80 bg-primary/5 w-fit px-3 py-1.5 rounded-full">
-                <ShieldCheck className="h-4 w-4" />
-                מתאים לבתי כנסת, בתי מדרש וקהילות
-              </div>
+            </div>
+            <div className="flex items-center gap-2 text-sm font-medium text-primary/80 bg-primary/5 w-fit px-3 py-1.5 rounded-full">
+              <ShieldCheck className="h-4 w-4 shrink-0" aria-hidden="true" />
+              מתאים לבתי כנסת, בתי מדרש וקהילות
+            </div>
+            <div className="pt-1 sm:pt-2">
+              <HeroGallery />
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="w-full sm:w-auto text-lg gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white" onClick={() => window.open('https://wa.me/972523517302', '_blank')} aria-label="שליחת הודעה בוואטסאפ">
+              <Button size="lg" className="w-full sm:w-auto text-lg gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white" onClick={() => window.open(whatsAppUrl, '_blank')} aria-label="שליחת הודעה בוואטסאפ">
                 <MessageCircle className="h-5 w-5" aria-hidden="true" />
                 שלחו הודעה בוואטסאפ
               </Button>
@@ -321,12 +329,18 @@ const Index = () => {
                 שלחו מייל
               </Button>
             </div>
+            <p className="text-sm text-muted-foreground leading-relaxed [overflow-wrap:anywhere]">
+              רכישה: <span className="text-foreground/90">חבילה מלאה</span> (מחשב + מסך + תוכנה) או{" "}
+              <span className="text-foreground/90">רישיון תוכנה בלבד</span> — לפי מה שמתאים לבית הכנסת.{" "}
+              <a href="#purchase-options" className="text-primary font-medium underline-offset-2 hover:underline whitespace-nowrap">
+                פרטים על שני המסלולים
+              </a>
+            </p>
             <div className="space-y-1 text-sm text-muted-foreground">
               <p>⚠️ הפעלת המערכת דורשת מפתח רישיון לאחר רכישה</p>
               <p>✅ לקוחות שרכשו רישיון מקבלים ליווי והתקנה מרחוק</p>
             </div>
           </div>
-          <HeroGallery />
         </div>
       </section>
 
@@ -366,74 +380,70 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Offline / no-internet option — highlighted band */}
-      <section className="relative py-20 overflow-hidden" aria-labelledby="offline-heading">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.04] to-muted/30" aria-hidden="true" />
-        <div className="absolute -top-32 -end-20 h-72 w-72 rounded-full bg-secondary/25 blur-3xl pointer-events-none motion-reduce:opacity-50" aria-hidden="true" />
-        <div className="absolute -bottom-24 -start-16 h-64 w-64 rounded-full bg-primary/20 blur-3xl pointer-events-none motion-reduce:opacity-50" aria-hidden="true" />
+      {/* Offline / no-internet — flows with page, no heavy card frame */}
+      <section
+        className="relative py-20 overflow-hidden border-y border-border/50 bg-gradient-to-b from-muted/40 via-background to-muted/30"
+        aria-labelledby="offline-heading"
+      >
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)/0.08),transparent)]" aria-hidden="true" />
         <div className="container relative max-w-6xl">
-          <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-card via-card to-primary/[0.04] shadow-2xl shadow-primary/10 ring-1 ring-primary/10">
-            <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-l from-primary via-secondary to-primary" aria-hidden="true" />
-            <div className="p-5 sm:p-5 md:p-10 lg:p-12">
-              <div className="mx-auto max-w-4xl space-y-8 sm:space-y-10 text-right min-w-0">
-                <div className="space-y-4">
-                  <div className="flex flex-wrap items-center gap-2 justify-end">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-secondary/40 bg-secondary/15 px-3 py-1.5 text-xs font-semibold text-secondary-foreground shadow-sm">
-                      <Sparkles className="h-3.5 w-3.5 text-secondary" aria-hidden="true" />
-                      פתרון ייעודי לבתי כנסת
-                    </span>
-                    <Badge variant="secondary" className="rounded-full bg-secondary/20 px-3 py-1.5 text-xs font-semibold text-secondary-foreground border border-secondary/30">
-                      מוצר משלים · נפרד מהתוכנה הראשית
-                    </Badge>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary shadow-sm">
-                      <WifiOff className="h-3.5 w-3.5" aria-hidden="true" />
-                      עצמאי מהרשת
-                    </span>
-                  </div>
-                  <p className="text-sm md:text-base font-medium text-secondary-foreground/90">
-                    מסך חכם ומלא — גם כשאין אינטרנט בבית הכנסת
-                  </p>
-                  <h2 id="offline-heading" className="text-3xl sm:text-4xl md:text-[2.25rem] font-extrabold text-primary leading-[1.15] tracking-tight">
-                    תוכנה ללא חיבור לאינטרנט
-                  </h2>
-                  <p className="text-lg md:text-xl font-semibold text-foreground">
-                    לבתי כנסת שבהם אין אינטרנט או שהחיבור אינו יציב
-                  </p>
-                </div>
-
-                <div className="space-y-3">
-                  <SlideshowGallery
-                    images={offlineGalleryImages}
-                    ariaLabel="דוגמה לתצוגת תמונות במצב ללא אינטרנט"
-                    altPrefix="דוגמה לתצוגת תמונות במצב ללא אינטרנט"
-                    imageFit="contain"
-                  />
-                </div>
-
-                <div className="space-y-5">
-                  <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                    זו אופציה נפרדת מהתוכנה הראשית: פתרון ייעודי לבתי כנסת ללא גישה לרשת. התוכנה מציגה על המסך זמני תפילה ושיעורי תורה, הודעות לקהל ולוח נפטרים — בדיוק כמו שצריך לקהילה, בלי תלות בחיבור לאינטרנט.
-                  </p>
-                  <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                    {[
-                      { t: "זמני תפילה ושיעורי תורה", d: "לוח זמנים ברור על המסך" },
-                      { t: "הודעות לקהל", d: "עדכונים והכרזות" },
-                      { t: "לוח נפטרים ואזכרות", d: "שמות ותאריכים בצורה מכובדת" },
-                    ].map((item, i) => (
-                      <li
-                        key={i}
-                        className="group flex gap-3 rounded-2xl border border-primary/15 bg-gradient-to-br from-muted/40 to-muted/10 p-4 shadow-sm transition-all duration-200 hover:border-secondary/40 hover:shadow-md hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
-                      >
-                        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                        <span>
-                          <span className="font-semibold text-foreground block">{item.t}</span>
-                          <span className="text-sm text-muted-foreground">{item.d}</span>
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+          <div className="mx-auto max-w-4xl space-y-10 sm:space-y-12 text-right min-w-0">
+            <div className="space-y-5 sm:space-y-6 border-s-4 border-secondary/50 ps-6 sm:ps-8">
+              <p className="inline-flex items-center gap-2 rounded-full border border-secondary/35 bg-secondary/10 px-4 py-2 text-sm font-bold text-secondary-foreground">
+                <Sparkles className="h-4 w-4 shrink-0 text-secondary" aria-hidden="true" />
+                פתרון ייחודי לבתי כנסת ללא גישה לאינטרנט
+              </p>
+              <h2 id="offline-heading" className="text-3xl sm:text-4xl md:text-[2.5rem] font-extrabold text-primary leading-[1.12] tracking-tight">
+                מסך מלא וחכם — גם כשאין רשת בבית הכנסת
+              </h2>
+              <p className="text-base sm:text-lg text-foreground font-medium leading-relaxed">
+                בלי Wi‑Fi, בלי ענן ובלי תלות בספק: התוכנה הייעודית רצה מקומית ומציגה זמנים, הודעות ואזכרות בבהירות.
+              </p>
+              <div className="flex flex-wrap items-center gap-2 justify-end pt-1">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary">
+                  <WifiOff className="h-3.5 w-3.5" aria-hidden="true" />
+                  עצמאי מהרשת · עדכון מקומי
+                </span>
+                <Badge variant="secondary" className="rounded-full bg-secondary/20 px-3 py-1.5 text-xs font-semibold text-secondary-foreground border border-secondary/30">
+                  מוצר משלים · נפרד מהתוכנה הראשית
+                </Badge>
               </div>
+            </div>
+
+            <div className="space-y-3">
+              <p className="text-sm font-semibold text-muted-foreground text-center sm:text-right">
+                דוגמה לתצוגה במצב עצמאי (ללא אינטרנט)
+              </p>
+              <SlideshowGallery
+                images={offlineGalleryImages}
+                ariaLabel="דוגמה לתצוגת תמונות במצב ללא אינטרנט"
+                altPrefix="דוגמה לתצוגת תמונות במצב ללא אינטרנט"
+                imageFit="contain"
+              />
+            </div>
+
+            <div className="space-y-5">
+              <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+                זו אופציה נפרדת מהתוכנה הראשית — לבתי כנסת שבהם אין אינטרנט או שהחיבור לא יציב. כל מה שהקהילה צריכה על המסך, בלי להמתין לרשת.
+              </p>
+              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                {[
+                  { t: "זמני תפילה ושיעורי תורה", d: "לוח זמנים ברור על המסך" },
+                  { t: "הודעות לקהל", d: "עדכונים והכרזות" },
+                  { t: "לוח נפטרים ואזכרות", d: "שמות ותאריכים בצורה מכובדת" },
+                ].map((item, i) => (
+                  <li
+                    key={i}
+                    className="group flex gap-3 rounded-2xl border border-primary/15 bg-muted/25 p-4 transition-colors duration-200 hover:border-secondary/35 hover:bg-muted/40"
+                  >
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
+                    <span>
+                      <span className="font-semibold text-foreground block">{item.t}</span>
+                      <span className="text-sm text-muted-foreground">{item.d}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
@@ -482,7 +492,7 @@ const Index = () => {
             <p className="text-lg text-primary-foreground/80 leading-relaxed">
               מערכת "לוח דוד" תוכננה מתוך כבוד למסורת והבנת הצרכים המודרניים, כדי לאפשר תקשורת שוטפת, ברורה ומכובדת מול קהל המתפללים.
             </p>
-            <Button size="lg" variant="secondary" className="w-full sm:w-auto text-lg mt-4" onClick={() => window.open('https://wa.me/972523517302', '_blank')} aria-label="צרו קשר בוואטסאפ">
+            <Button size="lg" variant="secondary" className="w-full sm:w-auto text-lg mt-4" onClick={() => window.open(whatsAppUrl, '_blank')} aria-label="צרו קשר בוואטסאפ">
               <MessageCircle className="h-5 w-5" aria-hidden="true" />
               צרו קשר בוואטסאפ
             </Button>
@@ -502,8 +512,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-muted/30">
+      {/* Pricing Section — גם: id לעוגן מפרטי רכישה בהירו */}
+      <section id="pricing" className="py-20 bg-muted/30 scroll-mt-20">
         <div className="container max-w-4xl">
           <Card className="border-primary shadow-xl overflow-hidden relative">
             <div className="absolute top-0 right-0 w-full h-2 bg-gradient-to-l from-primary to-secondary" />
@@ -518,7 +528,7 @@ const Index = () => {
                     נשמח לפרט על עלויות, התאמה לבית הכנסת שלכם ותנאי רישיון — ללא התחייבות בשיחה ראשונה.
                   </p>
                 </div>
-                <Button size="lg" className="w-full text-lg mt-4" onClick={() => window.open('https://wa.me/972523517302', '_blank')} aria-label="צרו קשר בוואטסאפ להצעת מחיר">
+                <Button size="lg" className="w-full text-lg mt-4" onClick={() => window.open(whatsAppUrl, '_blank')} aria-label="צרו קשר בוואטסאפ להצעת מחיר">
                   <MessageCircle className="h-5 w-5" aria-hidden="true" />
                   צרו קשר להצעת מחיר
                 </Button>
@@ -543,10 +553,10 @@ const Index = () => {
             </div>
           </Card>
 
-          <div className="mt-12 space-y-6">
+          <div id="purchase-options" className="mt-12 space-y-6 scroll-mt-24">
             <h3 className="text-center text-xl md:text-2xl font-bold text-primary">איך ניתן לרכוש?</h3>
             <p className="text-center text-muted-foreground max-w-2xl mx-auto">
-              בוחרים את המסלול שמתאים לבית הכנסת — חבילה מלאה או תוכנה בלבד. בשני המקרים נשמח לתת הצעת מחיר מפורטת.
+              בוחרים את המסלול שמתאים לבית הכנסת — חבילה מלאה (מחשב + מסך + תוכנה) או רכישת התוכנה בלבד. בשני המקרים נשמח לתת הצעת מחיר מפורטת.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="border-primary/20 shadow-md hover:shadow-lg transition-shadow">
@@ -554,7 +564,7 @@ const Index = () => {
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center" aria-hidden="true">
                     <Package className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle className="text-xl">חבילה מלאה</CardTitle>
+                  <CardTitle className="text-xl">חבילה מלאה: מחשב + מסך + תוכנה</CardTitle>
                   <CardDescription className="text-base leading-relaxed">
                     מחשב מיני, מסך בגדלים שונים לבחירה והתוכנה — פתרון אחד שמגיע מוכן לעבודה, כולל התאמת גודל מסך לחלל ולצרכים שלכם.
                   </CardDescription>
@@ -565,9 +575,9 @@ const Index = () => {
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center" aria-hidden="true">
                     <AppWindow className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle className="text-xl">תוכנה בלבד</CardTitle>
+                  <CardTitle className="text-xl">תוכנה בלבד (רישיון)</CardTitle>
                   <CardDescription className="text-base leading-relaxed">
-                    ניתן לרכוש את רישיון התוכנה בנפרד — מתאים למי שכבר מחזיק במחשב ובמסך מתאימים ורוצה רק את מערכת &quot;לוח דוד&quot; והתקנה.
+                    רכישת רישיון התוכנה בנפרד — מתאים למי שכבר מחזיק במחשב ובמסך מתאימים ורוצה רק את מערכת &quot;לוח דוד&quot; והתקנה.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -583,7 +593,7 @@ const Index = () => {
             <h2 className="text-2xl font-bold">מעדיפים לדבר איתנו בוואטסאפ?</h2>
             <p className="text-white/90">זמינים לשאלות, ייעוץ והדגמות</p>
           </div>
-          <Button size="lg" variant="secondary" className="text-lg gap-2 text-[#25D366] whitespace-nowrap" onClick={() => window.open('https://wa.me/972523517302', '_blank')} aria-label="פנייה בוואטסאפ לשמוע עוד">
+          <Button size="lg" variant="secondary" className="text-lg gap-2 text-[#25D366] whitespace-nowrap" onClick={() => window.open(whatsAppUrl, '_blank')} aria-label="פנייה בוואטסאפ לשמוע עוד">
             <MessageCircle className="h-5 w-5" aria-hidden="true" />
             אני רוצה לשמוע עוד
           </Button>
@@ -660,7 +670,7 @@ const Index = () => {
               <Mail className="h-4 w-4" aria-hidden="true" />
               davinet120@gmail.com
             </a>
-            <a href="https://wa.me/972523517302" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors text-[#25D366]" aria-label="פתיחת שיחה בוואטסאפ">
+            <a href={whatsAppUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors text-[#25D366]" aria-label="פתיחת שיחה בוואטסאפ">
               <MessageCircle className="h-4 w-4" aria-hidden="true" />
               וואטסאפ
             </a>
