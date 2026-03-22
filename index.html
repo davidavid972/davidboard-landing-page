@@ -1,25 +1,133 @@
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang="he-IL" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#1e3a5f" />
-    <title>לוח דוד - מסך דיגיטלי לבית הכנסת | לוח זמני תפילות</title>
-    <meta name="description" content="לוח דוד - תוכנה מתקדמת למסך דיגיטלי לבית הכנסת. תצוגה חכמה וברורה של זמני תפילות, הודעות, שיעורי תורה ואזכרות. ניהול קל ונוח." />
-    <meta name="keywords" content="מסך דיגיטלי לבית כנסת, לוח זמני תפילות, לוח מודעות אלקטרוני, מסך תפילות, תוכנה לבית כנסת, לוח דוד" />
+    <title>לוח דוד | תוכנה למסך דיגיטלי בבית כנסת · זמני תפילה · הודעות · ללא אינטרנט</title>
+    <meta
+      name="description"
+      content="לוח דוד — תוכנה למסך דיגיטלי בבית כנסת: זמני תפילה ושיעורי תורה, הודעות לקהל, לוח נפטרים ואזכרות. גרסה לעבודה בלי אינטרנט. הצעת מחיר ותמיכה — צרו קשר."
+    />
+    <meta
+      name="keywords"
+      content="לוח דוד, מסך דיגיטלי לבית כנסת, תוכנה לבית כנסת, לוח זמני תפילות, מסך תפילות, מסך הודעות בית כנסת, לוח נפטרים דיגיטלי, מסך ללא אינטרנט, לוח מודעות בית כנסת"
+    />
     <meta name="author" content="Davinet" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
 
-    <meta property="og:title" content="לוח דוד - מסך דיגיטלי לבית הכנסת" />
-    <meta property="og:description" content="תוכנה מתקדמת למסך דיגיטלי לבית הכנסת. תצוגה חכמה של זמני תפילות, הודעות ואזכרות." />
+    <!-- SEO_CANONICAL_START -->
+    <link rel="canonical" href="__SITE_URL__/" />
+    <!-- SEO_CANONICAL_END -->
+    <!-- SEO_HREFLANG_START -->
+    <link rel="alternate" hreflang="he-IL" href="__SITE_URL__/" />
+    <link rel="alternate" hreflang="x-default" href="__SITE_URL__/" />
+    <!-- SEO_HREFLANG_END -->
+
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:title" content="לוח דוד | תוכנה למסך דיגיטלי בבית כנסת" />
+    <meta
+      property="og:description"
+      content="זמני תפילה, הודעות, אזכרות ולוח נפטרים על המסך — ואפשרות לבית כנסת בלי אינטרנט יציב. לוח דוד."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/placeholder.svg" />
+    <!-- SEO_OGURL_START -->
+    <meta property="og:url" content="__SITE_URL__/" />
+    <!-- SEO_OGURL_END -->
+    <meta property="og:image" content="__OG_IMAGE__" />
+    <meta property="og:site_name" content="לוח דוד" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="לוח דוד - מסך דיגיטלי לבית הכנסת" />
-    <meta name="twitter:description" content="תוכנה מתקדמת למסך דיגיטלי לבית הכנסת. תצוגה חכמה של זמני תפילות, הודעות ואזכרות." />
-    <meta name="twitter:image" content="/placeholder.svg" />
+    <meta name="twitter:title" content="לוח דוד | תוכנה למסך דיגיטלי בבית כנסת" />
+    <meta
+      name="twitter:description"
+      content="זמני תפילה, הודעות, אזכרות ולוח נפטרים על המסך — ואפשרות לבית כנסת בלי אינטרנט יציב."
+    />
+    <meta name="twitter:image" content="__OG_IMAGE__" />
+
+    <!-- SEO_JSONLD_START -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "__SITE_URL__/#organization",
+            "name": "לוח דוד",
+            "url": "__SITE_URL__/",
+            "description": "תוכנה למסך דיגיטלי בבית כנסת: זמני תפילה, הודעות לקהל, לוח נפטרים ואזכרות — כולל אפשרות לעבודה ללא אינטרנט.",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "__SITE_URL__/favicon.svg"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "__SITE_URL__/#website",
+            "url": "__SITE_URL__/",
+            "name": "לוח דוד — מסך דיגיטלי לבית כנסת",
+            "inLanguage": "he-IL",
+            "publisher": { "@id": "__SITE_URL__/#organization" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "לוח דוד",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Windows",
+            "description": "מערכת תצוגה לבית כנסת: זמני תפילה ושיעורי תורה, הודעות, לוח נפטרים ואזכרות. גרסה ייעודית לעבודה בלי חיבור לאינטרנט.",
+            "url": "__SITE_URL__/"
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "מה בדיוק מקבלים?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "בהצעה כלולים בדרך כלל רישיון מלא לשימוש בתוכנת 'לוח דוד', מערכת ניהול נוחה, כל אפשרויות התצוגה, התקנה ותמיכה טכנית — הפרטים המדויקים יסוכמו בהצעת המחיר."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "האם זה מתאים לכל בית כנסת?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "כן! המערכת גמישה לחלוטין וניתן להתאים את ההגדרות, זמני התפילה, העיצוב והתוכן לכל קהילה, נוסח או מנהג."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "האם יש התקנה?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "כן. ההתקנה המקצועית וההפעלה הראשונית בבית הכנסת נכללות במסגרת ההצעה — יש לוודא מולנו את הפרטים בעת קבלת הצעת המחיר."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "האם אפשר לעדכן הודעות בקלות?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "בהחלט. המערכת תוכננה במיוחד כדי לאפשר לגבאים לעדכן זמנים, הודעות ואזכרות בקלות ובמהירות, ללא צורך בידע טכני מוקדם."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "איך מקבלים הצעת מחיר?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "צרו קשר בוואטסאפ או בטלפון — נשמח להבין את הצרכים של בית הכנסת ולהחזיר הצעה מפורטת, כולל רישיון, התקנה והפעלה ראשונית ותמיכה שוטפת."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <!-- SEO_JSONLD_END -->
   </head>
 
   <body>

@@ -287,10 +287,10 @@ const Index = () => {
             </Badge>
             <div className="space-y-4">
               <h1 id="hero-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary leading-tight [overflow-wrap:anywhere]">
-                הדרך המכובדת והחכמה להציג מידע בבית הכנסת
+                לוח דוד — מסך דיגיטלי לבית הכנסת
               </h1>
               <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed [overflow-wrap:anywhere]">
-                לוח דוד מציג זמני תפילות, הודעות, אזכרות ואירועים על גבי מסך דיגיטלי מעוצב, ברור ונוח לעדכון.
+                תוכנה למסך חכם: זמני תפילה ושיעורי תורה, הודעות לקהל, לוח נפטרים ואזכרות — תצוגה מכובדת, ברורה ונוחה לעדכון. אפשרות ייעודית גם לבתי כנסת בלי אינטרנט יציב.
               </p>
               <div className="flex items-center gap-2 text-sm font-medium text-primary/80 bg-primary/5 w-fit px-3 py-1.5 rounded-full">
                 <ShieldCheck className="h-4 w-4" />
