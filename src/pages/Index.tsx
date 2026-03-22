@@ -388,7 +388,7 @@ const Index = () => {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)/0.08),transparent)]" aria-hidden="true" />
         <div className="container relative max-w-6xl">
           <div className="mx-auto max-w-4xl space-y-10 sm:space-y-12 text-right min-w-0">
-            <div className="space-y-5 sm:space-y-6 border-s-4 border-secondary/50 ps-6 sm:ps-8">
+            <div className="space-y-5 sm:space-y-6">
               <p className="inline-flex items-center gap-2 rounded-full border border-secondary/35 bg-secondary/10 px-4 py-2 text-sm font-bold text-secondary-foreground">
                 <Sparkles className="h-4 w-4 shrink-0 text-secondary" aria-hidden="true" />
                 פתרון ייחודי לבתי כנסת ללא גישה לאינטרנט
